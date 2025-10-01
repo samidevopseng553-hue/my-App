@@ -9,11 +9,9 @@ import {
   TableBody,
   Button,
 } from "@mui/material";
-const useState = React.useState;
-const useEffect = React.useEffect;
 
  const styledTable = styled(Box)`
-  width: 80%;`;
+  width: 80%`;
 
 const Users = () => {
  

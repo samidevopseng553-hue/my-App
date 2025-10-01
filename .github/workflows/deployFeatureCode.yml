@@ -1,0 +1,8 @@
+name: deployFeatureCode
+on: push
+jobs:
+  deployFeatureCode:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: say Hello
+      run: echo "Hello World!"

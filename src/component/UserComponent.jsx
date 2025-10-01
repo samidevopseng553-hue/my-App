@@ -66,8 +66,8 @@ const User = () => {
 
   return (
     <>
-      <StyledTable>
-        <Typography variant='h4'>User</Typography>
+    <Typography variant='h4'>User</Typography>
+      <StyledTable> 
         <Box>
           <Table>
             <TableHead>

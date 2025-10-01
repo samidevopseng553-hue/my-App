@@ -1,5 +1,4 @@
 import './App.css';
-// import User from './component/Users';
 import User from './component/UserComponent';
 
 function App() {

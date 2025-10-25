@@ -1,32 +1,21 @@
 name: Deploy React App to AWS S3
 
-# -------------------------------
-# 1️⃣ WHEN THE WORKFLOW SHOULD RUN
-# -------------------------------
 on:
   push:
     branches:
       - main  
   workflow_dispatch:
 
-# -------------------------------
-# 2️⃣ DEFINE JOBS
-# -------------------------------
 jobs:
-  build-and-deploy:
-    name: Build and Deploy React App
+  build:
+    name: Build React App
     runs-on: ubuntu-latest
 
-    # -------------------------------
-    # 3️⃣ SETUP ENVIRONMENT VARIABLES
-    # -------------------------------
     env:
       AWS_REGION: us-east-1
       S3_BUCKET: edumanage-dev-website
 
-    # -------------------------------
-    # 4️⃣ DEFINE SEQUENTIAL STEPS
-    # -------------------------------
+
     steps:
       # Step 1: Checkout Code
       - name: Checkout repository code
@@ -46,7 +35,10 @@ jobs:
       - name: Build the React app
         run: npm run build
 
-      # Step 5: Configure AWS Credentials
+  Deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -54,15 +46,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # Step 6: Deploy to AWS S3
       - name: Deploy build folder to S3
         run: |
           aws s3 sync build/ s3://${{ env.S3_BUCKET }} --delete
-
-      # # Step 7: Invalidate CloudFront Cache (optional)
-      # - name: Invalidate CloudFront cache
-      #   if: env.CLOUDFRONT_DISTRIBUTION_ID != ''
-      #   run: |
-      #     aws cloudfront create-invalidation \
-      #       --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
-      #       --paths "/*"

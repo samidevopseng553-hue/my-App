@@ -12,7 +12,7 @@ import {
   Typography
 } from '@mui/material';
 
-const API_URL = 'https://j1f9wp1336.execute-api.us-east-1.amazonaws.com/dev/users';
+const API_URL = 'https://jign18zmz3.execute-api.us-east-1.amazonaws.com/dev/getUser';
 
 const StyledTable = styled(Table)`
   width: 90%;

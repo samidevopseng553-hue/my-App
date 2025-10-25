@@ -35,26 +35,26 @@ const StyledTable = styled(Table)`
 const User = () => {
   const [users, setUsers] = useState([]);
 
-  // useEffect(() => {
-  //   fetch(API_URL)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       // If your Lambda returns { users: [...] }, use setUsers(data.users)
-  //       setUsers(Array.isArray(data) ? data : data.users || []);
-  //     })
-  //     .catch(err => console.error(err));
-  // }, []);
-
   useEffect(() => {
-  fetch(API_URL)
-    .then(res => res.json())
-    .then(data => {
-      // data.body is a stringified array, so parse it
-      const usersArray = JSON.parse(data.body);
-      setUsers(Array.isArray(usersArray) ? usersArray : []);
-    })
-    .catch(err => console.error(err));
-}, []);
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => {
+        // If your Lambda returns { users: [...] }, use setUsers(data.users)
+        setUsers(Array.isArray(data) ? data : data.users || []);
+      })
+      .catch(err => console.error(err));
+  }, []);
+
+//   useEffect(() => {
+//   fetch(API_URL)
+//     .then(res => res.json())
+//     .then(data => {
+//       // data.body is a stringified array, so parse it
+//       const usersArray = JSON.parse(data.body);
+//       setUsers(Array.isArray(usersArray) ? usersArray : []);
+//     })
+//     .catch(err => console.error(err));
+// }, []);
 
 
   const removeEntry = (id) => {

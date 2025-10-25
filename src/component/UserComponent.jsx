@@ -17,7 +17,7 @@ const API_URL = 'https://j1f9wp1336.execute-api.us-east-1.amazonaws.com/dev/user
 const StyledTable = styled(Table)`
   width: 90%;
   margin: 50px auto 0 auto;
-  background: #f3f3f3;
+  background: blue;
   & > div > table > thead {
     background: #000000;
     border: 1px solid #000;

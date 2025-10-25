@@ -35,10 +35,6 @@ jobs:
       - name: Build the React app
         run: npm run build
 
-  Deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -49,3 +45,4 @@ jobs:
       - name: Deploy build folder to S3
         run: |
           aws s3 sync build/ s3://${{ env.S3_BUCKET }} --delete
+

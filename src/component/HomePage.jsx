@@ -11,7 +11,7 @@ const HomePage = () => {
           <li><a href="#features">Features</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="/login" className="login-btn">Login</a></li>
+          <li><a href="/LoginPage" className="login-btn">Login</a></li>
         </ul>
       </nav>
 

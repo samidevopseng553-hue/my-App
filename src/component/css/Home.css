@@ -1,0 +1,129 @@
+.home-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f9fafc;
+  min-height: 100vh;
+}
+
+.navbar {
+  background-color: #1e1e2f;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.navbar nav a:hover {
+  color: #00bcd4;
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 80px;
+  background: linear-gradient(120deg, #00bcd4, #0097a7);
+  color: white;
+}
+
+.hero-text {
+  flex: 1;
+  margin-right: 40px;
+}
+
+.hero-text h2 {
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.get-started {
+  background-color: #fff;
+  color: #0097a7;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.get-started:hover {
+  background-color: #e0f7fa;
+}
+
+.hero-image img {
+  width: 320px;
+}
+
+.features-section {
+  text-align: center;
+  padding: 60px 40px;
+  background-color: #ffffff;
+}
+
+.features-section h3 {
+  font-size: 28px;
+  margin-bottom: 40px;
+  color: #1e1e2f;
+}
+
+.features-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background-color: #f4f6f8;
+  border-radius: 12px;
+  width: 280px;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  background-color: #e9f7f9;
+}
+
+.feature-card img {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+.feature-card h4 {
+  margin-bottom: 10px;
+  color: #007c91;
+}
+
+.footer {
+  background-color: #1e1e2f;
+  color: #bbb;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  font-size: 14px;
+}

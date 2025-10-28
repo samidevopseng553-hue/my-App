@@ -26,7 +26,6 @@
 
 import Sidebar from "./component/Sidebar";
 import Navbar from "./component/Navbar";
-import StatCards from "./component/StatCards";
 import Dashboard from "./pages/Dashboard";
 import "./index.css";
 

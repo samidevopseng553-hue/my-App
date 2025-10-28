@@ -11,3 +11,109 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+/* Layout structure */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+}
+
+.sidebar h1 {
+  font-size: 22px;
+  color: #2563eb;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.sidebar nav button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  width: 100%;
+  border: none;
+  background: none;
+  color: #555;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar nav button:hover {
+  background-color: #2563eb1a;
+  color: #2563eb;
+}
+
+.main-content {
+  margin-left: 240px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  height: 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  width: calc(100% - 240px);
+  top: 0;
+  z-index: 10;
+}
+
+.navbar .search-bar {
+  background-color: #f1f3f5;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  width: 280px;
+}
+
+.navbar .search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  margin-left: 8px;
+}
+
+.navbar .icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: #555;
+  cursor: pointer;
+}
+
+.dashboard {
+  padding: 80px 30px 30px 30px;
+}

@@ -1,11 +1,74 @@
 pipeline {
-  agent any 
+    agent any
 
-  stages {
-    stage(){
+    environment {
+        ACR_NAME = "samicontainerregistrycicd"
+        ACR_LOGIN_SERVER = "samicontainerregistrycicd.azurecr.io"
+        IMAGE_NAME = "frontend"
+        TAG = "${BUILD_NUMBER}"
+
+        ACR_CREDENTIALS = "azure-acr-creds"
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                echo "📥 Checking out source code..."
+                sh "git clone https://github.com/samidevopseng553-hue/my-App.git"
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo "🐳 Building Docker image..."
+                sh """
+                    cd my-App
+                    docker build -t ${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${TAG} .
+                """
+            }
+        }
+
+        stage('Login to Azure ACR') {
+            steps {
+                echo "🔐 Logging into Azure Container Registry..."
+                withCredentials([usernamePassword(credentialsId: "${ACR_CREDENTIALS}", usernameVariable: 'ACR_USER', passwordVariable: 'ACR_PASS')]) {
+                    sh """
+                        echo $ACR_PASS | docker login ${ACR_LOGIN_SERVER} -u $ACR_USER --password-stdin
+                    """
+                }
+            }
+        }
+
+        stage('Push Docker Image to ACR') {
+            steps {
+                echo "🚀 Pushing image to ACR..."
+                sh "docker push ${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${TAG}"
+            }
+        }
+
+        stage('Clean up Local Docker') {
+            steps {
+                echo "🧹 Cleaning up local Docker images..."
+                sh """
+                    docker rmi ${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${TAG} || true
+                    docker logout ${ACR_LOGIN_SERVER}
+                """
+            }
+        }
+    }
+
+    stage("update k8s deployment file"){
       steps {
-        sh "docker hello-world"
+          echo "Deployment file updated successfully"
       }
     }
-  }
+
+    post {
+        success {
+            echo "✅ Docker image pushed successfully: ${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${TAG}"
+        }
+        failure {
+            echo "❌ Build or push failed. Check logs for details."
+        }
+    }
 }

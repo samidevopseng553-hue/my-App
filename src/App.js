@@ -23,20 +23,58 @@
 
 // export default App;
 
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import Sidebar from "./component/Sidebar";
+// import Navbar from "./component/Navbar";
+// import Dashboard from "./pages/Dashboard";
+// import "./index.css";
 
+// export default function App() {
+//   return (
+//     <div className="app-container">
+//       <Sidebar />
+//       <div className="main-content">
+//         <Navbar />
+//         <Dashboard />
+//       </div>
+//     </div>
+//   );
+// }
+
+
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Sidebar from "./component/Sidebar";
 import Navbar from "./component/Navbar";
 import Dashboard from "./pages/Dashboard";
+import LoginPage from "./pages/LoginPage";
 import "./index.css";
 
-export default function App() {
+// ✅ Layout Wrapper Component
+function Layout() {
+  const location = useLocation();
+  const hideLayout = location.pathname === "/LoginPage"; // 👈 Hide layout for login page
+
   return (
     <div className="app-container">
-      <Sidebar />
+      {!hideLayout && <Sidebar />}
       <div className="main-content">
-        <Navbar />
-        <Dashboard />
+        {!hideLayout && <Navbar />}
+
+        {/* Define Routes */}
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/LoginPage" element={<LoginPage />} />
+        </Routes>
       </div>
     </div>
   );
 }
+
+export default function App() {
+  return (
+    <Router>
+      <Layout />
+    </Router>
+  );
+}
+

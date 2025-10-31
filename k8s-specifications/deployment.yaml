@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend-app
-        image: samicontainerregistrycicd.azurecr.io/frontend:4
+        image: samicontainerregistrycicd.azurecr.io/frontend:5
         imagePullPolicy: Always
         ports:
         - containerPort: 80
